@@ -1,4 +1,4 @@
-package http.database;
+package database;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

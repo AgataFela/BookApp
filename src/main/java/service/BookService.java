@@ -1,6 +1,9 @@
-package http.mapper;
+package service;
 
 import com.google.gson.Gson;
+
+
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,9 +13,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.InputMismatchException;
 
-import static sun.net.NetProperties.get;
+//import static sun.net.NetProperties.get;
 
 public class BookService {
+
 
     public String chooseBook(String isbnNumber) throws CustomException {
         String uri = "https://openlibrary.org/isbn/" + isbnNumber + ".json";
@@ -24,15 +28,16 @@ public class BookService {
         return get(uri);
     }
 
-    public Object getBook() throws CustomException {
-        String uri = "https://openlibrary.org/isbn/";
-        String json = get(uri);
-        Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
-        BookDto book = gson.fromJson(json, BookDto.class);
-        return book;
+//    public Object getBook() throws CustomException {
+//        String uri = "https://openlibrary.org/isbn/";
+//        String json = get(uri);
+//        Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
+//
+//        BookDto book = gson.fromJson(json, BookDto.class);
+//        return book;
 
 // inicjacja połaczenia i czytanie tego co przekazuje API
-        private String get(String uri) throws CustomException {
+        private String get (String uri) throws CustomException {
             try {
                 URL url = new URL(uri);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -63,6 +68,8 @@ public class BookService {
 
     }
 
-}
+
+
+
 
 

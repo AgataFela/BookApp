@@ -1,4 +1,4 @@
-package http.dto;
+package dto;
 
 public class BookDto {
 
