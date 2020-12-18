@@ -18,11 +18,13 @@ public class Main {
             int option = scanner.nextInt();
             String result;
 
+
             switch (option) {
                 case 1:
                     System.out.println("Wprowadz number ISBN");
                     String isbnNumber = scanner.next();
                     result = bookService.chooseBook(isbnNumber);
+
                     break;
 
                 default:

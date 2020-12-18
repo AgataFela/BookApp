@@ -1,8 +1,7 @@
 package service;
 
 import com.google.gson.Gson;
-
-
+import dto.BookDto;
 
 
 import java.io.BufferedReader;
@@ -28,13 +27,14 @@ public class BookService {
         return get(uri);
     }
 
-//    public Object getBook() throws CustomException {
-//        String uri = "https://openlibrary.org/isbn/";
-//        String json = get(uri);
-//        Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
-//
-//        BookDto book = gson.fromJson(json, BookDto.class);
-//        return book;
+    public Object getBook() throws CustomException {
+        String uri = "https://openlibrary.org/isbn/";
+        String json = get(uri);
+        Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
+
+        BookDto book = gson.fromJson(json, BookDto.class);
+        return book;
+}
 
 // inicjacja połaczenia i czytanie tego co przekazuje API
         private String get (String uri) throws CustomException {
