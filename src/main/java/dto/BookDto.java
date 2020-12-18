@@ -72,7 +72,7 @@ public class BookDto {
         return "bookDto{" +
                 "publishers='" + publishers + '\'' +
                 ", number_of_pages=" + number_of_pages +
-                ", isbn_10=" + isbn_13 +
+                ", isbn_13=" + isbn_13 +
                 ", covers=" + covers +
                 ", authors='" + authors + '\'' +
                 ", title='" + title + '\'' +
