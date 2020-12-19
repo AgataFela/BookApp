@@ -1,5 +1,7 @@
 package database;
 
+import com.google.gson.internal.LinkedTreeMap;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,19 +14,11 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private int isbn_13;
+    private String isbn_13;
     private String authors;
     private String title;
-    private String firstSentence;
     private int number_of_pages;
 
-    public String getFirstSentence() {
-        return firstSentence;
-    }
-
-    public void setFirstSentence(String firstSentence) {
-        this.firstSentence = firstSentence;
-    }
 
     public int getNumber_of_pages() {
         return number_of_pages;
@@ -44,7 +38,7 @@ public class Book {
         this.id = id;
     }
 
-    public String getAuthors() {
+    public LinkedTreeMap<String, String> getAuthors() {
         return authors;
     }
 
@@ -59,7 +53,8 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
-    public int getIsbn_13() {
+
+    public String getIsbn_13() {
         return isbn_13;
     }
 

@@ -1,7 +1,11 @@
 package service;
 
 import com.google.gson.Gson;
+import database.Book;
+import database.BookDao;
 import dto.BookDto;
+import http.HttpClient;
+import mapper.BookMapper;
 
 
 import java.io.BufferedReader;
@@ -11,10 +15,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.InputMismatchException;
+import java.util.List;
 
 //import static sun.net.NetProperties.get;
 
 public class BookService {
+
+    private final HttpClient httpClient;
+    private final BookDao bookDao;
+
+    public BookService(HttpClient httpClient) {
+        this.httpClient = httpClient;
+        bookDao = new BookDao();
+    }
 
 
     public String chooseBook(String isbnNumber) throws CustomException {
@@ -27,12 +40,14 @@ public class BookService {
         return get(uri);
     }
 
-    public Object getBook() throws CustomException {
-        String uri = "https://openlibrary.org/isbn/";
-        String json = get(uri);
-        Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
+    public Object getBook(String isbnNumber) throws CustomException {
+        String uri = "https://openlibrary.org/isbn/"+ isbnNumber + ".json";
+        String json = httpClient.get(uri);
 
+        Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
         BookDto book = gson.fromJson(json, BookDto.class);
+
+        List<Book> entities = BookMapper.
         return book;
 }
 

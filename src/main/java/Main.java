@@ -1,3 +1,4 @@
+import http.HttpClient;
 import service.BookService;
 import service.CustomException;
 
@@ -7,7 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        BookService bookService = new BookService();
+        HttpClient httpClient = new HttpClient();
+        BookService bookService = new BookService(httpClient);
+
         try {
 
             System.out.println("Wybierz opcję");
@@ -23,7 +26,7 @@ public class Main {
                 case 1:
                     System.out.println("Wprowadz number ISBN");
                     String isbnNumber = scanner.next();
-                    result = bookService.chooseBook(isbnNumber);
+                    result = bookService.getBook(isbnNumber).toString();
 
                     break;
 

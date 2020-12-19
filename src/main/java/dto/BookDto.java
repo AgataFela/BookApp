@@ -1,21 +1,20 @@
 package dto;
 
+import com.google.gson.internal.LinkedTreeMap;
+
 public class BookDto {
 
-    private String publishers;
-
+    private LinkedTreeMap<String, String> publishers; //kolekcja
     private int number_of_pages;
-    private int isbn_13;
-    private int covers;
-    private String authors;
+    private LinkedTreeMap<String, Integer> isbn_13;
+    private LinkedTreeMap<String, String> authors;
     private String title;
-    private String firstSentence;
 
-    public String getPublishers() {
+    public LinkedTreeMap<String, String> getPublishers() {
         return publishers;
     }
 
-    public void setPublishers(String publishers) {
+    public void setPublishers(LinkedTreeMap<String, String> publishers) {
         this.publishers = publishers;
     }
 
@@ -27,27 +26,19 @@ public class BookDto {
         this.number_of_pages = number_of_pages;
     }
 
-    public int getIsbn_13() {
+    public LinkedTreeMap<String, Integer> getIsbn_13() {
         return isbn_13;
     }
 
-    public void setIsbn_13(int isbn_13) {
+    public void setIsbn_13(LinkedTreeMap<String, Integer> isbn_13) {
         this.isbn_13 = isbn_13;
     }
 
-    public int getCovers() {
-        return covers;
-    }
-
-    public void setCovers(int covers) {
-        this.covers = covers;
-    }
-
-    public String getAuthors() {
+    public LinkedTreeMap<String, String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(String authors) {
+    public void setAuthors(LinkedTreeMap<String, String> authors) {
         this.authors = authors;
     }
 
@@ -59,24 +50,18 @@ public class BookDto {
         this.title = title;
     }
 
-    public String getFirstSentence() {
-        return firstSentence;
-    }
-
-    public void setFirstSentence(String firstSentence) {
-        this.firstSentence = firstSentence;
-    }
-
     @Override
     public String toString() {
-        return "bookDto{" +
-                "publishers='" + publishers + '\'' +
+        return "BookDto{" +
+                "publishers=" + publishers +
                 ", number_of_pages=" + number_of_pages +
                 ", isbn_13=" + isbn_13 +
-                ", covers=" + covers +
-                ", authors='" + authors + '\'' +
+                ", authors=" + authors +
                 ", title='" + title + '\'' +
-                ", firstSentence='" + firstSentence + '\'' +
                 '}';
     }
+
+
+
+
 }
