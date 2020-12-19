@@ -63,7 +63,7 @@ public class Book {
         return isbn_13;
     }
 
-    public void setIsbn_13(int isbn_13) {
+    public void setIsbn_13(String isbn_13) {
         this.isbn_13 = isbn_13;
     }
 
