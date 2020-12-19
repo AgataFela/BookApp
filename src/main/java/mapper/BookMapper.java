@@ -9,28 +9,37 @@ import java.util.List;
 
 public class BookMapper {
 
-    public static List<Book> mapBookDtoToEntity(BookDto bookDto){
+    public static Book mapBookDtoToEntity(BookDto bookDto){
 
-        List<Book> result = new ArrayList<>();
-        for (String key : bookDto.getIsbn_13().keySet()) {
            Book book = new Book();
-            book.setAuthors(bookDto.getAuthors());
             book.setTitle(bookDto.getTitle());
             book.setNumber_of_pages(bookDto.getNumber_of_pages());
-            book.setIsbn_13(key);
 
-            result.add(book);
+
+            String temp = "";
+
+        for (String val: bookDto.getIsbn_13()) {
+            temp = temp+val+",";
         }
+            book.setIsbn_13(temp);
 
-        return result;
+            return book;
+
+
+
     }
 
     public static BookDto mapBookToBookDto(Book book){
 
         BookDto result = new BookDto();
-        result.setAuthors(book.getAuthors());
         result.setTitle(book.getTitle());
-        result.getNumber_of_pages()
+        result.setNumber_of_pages(book.getNumber_of_pages());
+        result.setIsbn_13(book.getIsbn_13().split(","));
+
+        return result;
+
+
+
     }
 
 

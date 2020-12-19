@@ -15,7 +15,7 @@ public class Book {
     private long id;
 
     private String isbn_13;
-    private String authors;
+
     private String title;
     private int number_of_pages;
 
@@ -38,13 +38,6 @@ public class Book {
         this.id = id;
     }
 
-    public LinkedTreeMap<String, String> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(String authors) {
-        this.authors = authors;
-    }
 
     public String getTitle() {
         return title;

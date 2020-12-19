@@ -40,16 +40,26 @@ public class BookService {
         return get(uri);
     }
 
-    public Object getBook(String isbnNumber) throws CustomException {
+    public BookDto getBook(String isbnNumber) throws CustomException {
+        BookDto bookDto;
+        Book book = bookDao.getByIsbnNumber(isbnNumber);
+        if (book != null){
+            return BookMapper.mapBookToBookDto(book);
+
+        }
+
         String uri = "https://openlibrary.org/isbn/"+ isbnNumber + ".json";
         String json = httpClient.get(uri);
 
         Gson gson = new Gson(); //gsonBuilder do uzycia deserializera
-        BookDto book = gson.fromJson(json, BookDto.class);
+        bookDto = gson.fromJson(json, BookDto.class);
 
-        List<Book> entities = BookMapper.
-        return book;
+        Book entities = BookMapper.mapBookDtoToEntity(bookDto);
+        bookDao.create(entities);
+        return bookDto;
 }
+
+
 
 // inicjacja połaczenia i czytanie tego co przekazuje API
         private String get (String uri) throws CustomException {

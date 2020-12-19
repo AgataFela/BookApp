@@ -31,27 +31,27 @@ public class BookDao {
         return null;
     }
 
-    public Book getByAuthors(String authors){
-        try(Session session = HibernateConfig.getSessionFactory().openSession()){
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Book> query = cb.createQuery(Book.class);
-            Root<Book> table = query.from(Book.class);
-
-            Predicate[] predicates = new Predicate[1];
-            predicates[0] = cb.equal(table.get("authors"), authors);
-
-
-            query.select(table).where(predicates);
-
-            Book book = session.createQuery(query).getSingleResult();
-
-            return book;
-        }catch (PersistenceException e){
-            System.err.println("Błąd zapisu encji Book");
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public Book getByAuthors(String authors){
+//        try(Session session = HibernateConfig.getSessionFactory().openSession()){
+//            CriteriaBuilder cb = session.getCriteriaBuilder();
+//            CriteriaQuery<Book> query = cb.createQuery(Book.class);
+//            Root<Book> table = query.from(Book.class);
+//
+//            Predicate[] predicates = new Predicate[1];
+//            predicates[0] = cb.equal(table.get("authors"), authors);
+//
+//
+//            query.select(table).where(predicates);
+//
+//            Book book = session.createQuery(query).getSingleResult();
+//
+//            return book;
+//        }catch (PersistenceException e){
+//            System.err.println("Błąd zapisu encji Book");
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
     public Book getByTitle(String title) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -73,6 +73,30 @@ public class BookDao {
         }
         return null;
     }
+
+    public Book getByIsbnNumber(String isbn_13) {
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Book> query = cb.createQuery(Book.class);
+            Root<Book> table = query.from(Book.class);
+
+            Predicate[] predicates = new Predicate[1];
+
+            predicates[0] = cb.equal(table.get("isbn_13"), isbn_13);
+
+            query.select(table).where(predicates);
+
+            Book book = session.createQuery(query).getSingleResult();
+
+            return book;
+
+        } catch (PersistenceException e) {
+            System.err.println("Błąd zapisu encji Book");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void update(Book book){
 
     }
